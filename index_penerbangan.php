@@ -20,15 +20,28 @@
             else
                 // echo "Database berhasil dikoneksikan";
             echo "<br/>";
+
+            $keyword = "";
+            if(count($_GET)>0){
+                $keyword = $_GET['keyword'];
+            }
+
+
         ?>
         <b>Daftar Pesawat</b>
         <br>
         <a href="insert_penerbangan.php">Tambah</a>
         <a href="index.php">Daftar Bandara</a>
-        <a href="index_pesawat.php">Daftar Penerbangan</a>
+        <a href="index_pesawat.php">Daftar Pesawat</a>
         <a href="index_customer.php">Daftar Customer</a>
         <a href="index_penumpang_penerbangan.php">Daftar Penumpang Penerbangan</a>
 
+        <form action="" method="GET">                                               
+            <input type="text" name="keyword" value="<?php echo $keyword; ?>">
+            <button type="submit">SEARCH</button>
+        </form>
+
+        
         <table>
         
             <tr>
