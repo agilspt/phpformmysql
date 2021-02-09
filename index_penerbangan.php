@@ -56,6 +56,15 @@
             </tr>
             <?php
                 $sql_penerbangan = "SELECT * FROM penerbangan";
+                if(strlen($keyword)>0){
+                    $sql_penerbangan = "SELECT * FROM penerbangan WHERE 
+                        id_pesawat LIKE '%".$keyword."%' 
+                        OR id_bandara_dari LIKE '%".$keyword."%' 
+                        OR id_bandara_tujuan LIKE '%".$keyword."%' 
+                        OR waktu_penerbangan LIKE '%".$keyword."%' 
+                        OR status_penerbangan LIKE '%".$keyword."%'";    
+                }
+
                 $result_penerbangan = $connection->query($sql_penerbangan);
                 //MENGECEK APAKAH HASIL DATANYA ADA
                 if($result_penerbangan->num_rows>0){

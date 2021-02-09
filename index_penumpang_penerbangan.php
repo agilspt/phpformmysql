@@ -20,6 +20,13 @@
             else
                 // echo "Database berhasil dikoneksikan";
             echo "<br/>";
+            //form searching keyword
+            
+            $keyword = "";
+            if(count($_GET)>0){
+                $keyword = $_GET['keyword'];
+            }
+
         ?>
         <b>Daftar Penumpang Penerbangan</b>
         <br>
@@ -29,6 +36,10 @@
         <a href="index_customer.php">Daftar Customer</a>
         <a href="index_penerbangan.php">Daftar Penerbangan</a>
         
+        <form action="" method="GET">                                               
+            <input type="text" name="keyword" value="<?php echo $keyword; ?>">
+            <button type="submit">SEARCH</button>
+        </form>
 
         <table>
         
@@ -42,6 +53,12 @@
             </tr>
             <?php
                 $sql_penumpang_penerbangan = "SELECT * FROM penumpang_penerbangan";
+                if(strlen($keyword)>0){
+                    $sql_penumpang_penerbangan = "SELECT * FROM penumpang_penerbangan WHERE 
+                        id_penerbangan LIKE '%".$keyword."%' 
+                        OR id_penumpang LIKE '%".$keyword."%' 
+                        OR status_penumpang LIKE '%".$keyword."%'";    
+                }
                 $result_penumpang_penerbangan = $connection->query($sql_penumpang_penerbangan);
                 //MENGECEK APAKAH HASIL DATANYA ADA
                 if($result_penumpang_penerbangan->num_rows>0){
